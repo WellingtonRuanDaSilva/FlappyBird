@@ -377,7 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rig: {fileID: 541881063}
-  jumpForce: 5
+  jumpForce: 4
 --- !u!1 &583394488
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,7 +831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pipeModel: {fileID: 6557180234391801505, guid: 9c0aef2aa8a088f41be3be2b6bbd6733, type: 3}
   spawmPoint: {fileID: 737595337}
-  interval: 1
+  interval: 2
 --- !u!4 &1857690223
 Transform:
   m_ObjectHideFlags: 0
