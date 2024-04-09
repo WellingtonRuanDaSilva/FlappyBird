@@ -67,8 +67,22 @@ public class Bird : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        GameManager.instance.GameOver();
-        controller.SetBool("IsLive", false);
+        GameOver();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (collision.gameObject.layer)
+        {
+            case 6:
+                GameOver();
+                break;
+            case 7:
+                GameManager.instance.AddScore();
+                break;
+            default:
+                break;
+        }
     }
 
     public void Restart()
@@ -77,5 +91,11 @@ public class Bird : MonoBehaviour
         transform.rotation = Quaternion.identity;
         rig.bodyType = RigidbodyType2D.Static;
         controller.SetBool("IsLive", true);
+    }
+
+    private void GameOver()
+    {
+        GameManager.instance.GameOver();
+        controller.SetBool("IsLive", false);
     }
 }

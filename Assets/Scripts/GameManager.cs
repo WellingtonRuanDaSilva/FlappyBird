@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum GameStatus
 {
@@ -11,12 +13,13 @@ public enum GameStatus
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
     public GameStatus status = GameStatus.Start;
-
     public Bird bird;
-
     public PipesManager pipesManager;
+    public Image startImage;
+    public Image gameOverImage;
+    public TMP_Text scoreText;
+    int score = 0;
 
     private void Awake()
     {
@@ -34,6 +37,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Application.targetFrameRate = 60;
+        startImage.enabled = true;
+        gameOverImage.enabled = false;
 
     }
     private void Update()
@@ -63,10 +68,12 @@ public class GameManager : MonoBehaviour
     {
         status = GameStatus.Play;
         bird.StartGame();
+        startImage.enabled = false;
     }
     public void GameOver()
     {
         status = GameStatus.GameOver;
+        gameOverImage.enabled = true;
     }
 
     void GameOverUpdate()
@@ -82,5 +89,20 @@ public class GameManager : MonoBehaviour
         status = GameStatus.Start;
         bird.Restart();
         pipesManager.Restart();
+        startImage.enabled = true;
+        gameOverImage.enabled = false;
+        score = 0;
+        UpdateScoreText();
+    }
+
+    public void AddScore()
+    {
+        score++;
+        UpdateScoreText();
+    }
+
+    private void UpdateScoreText()
+    {
+        scoreText.text = "Socre: " + score.ToString();
     }
 }
