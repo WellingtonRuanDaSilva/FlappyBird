@@ -15,7 +15,7 @@ public class Ground : MonoBehaviour
             case GameStatus.Start:
                 break;
             case GameStatus.Play:
-                PlayUpdate();
+                MoveGround();
                 break;
             case GameStatus.GameOver:
                 break;
@@ -25,7 +25,7 @@ public class Ground : MonoBehaviour
 
     }
 
-    private void PlayUpdate()
+    private void MoveGround()
     {
         transform.position += Vector3.left * Time.deltaTime * GameManager.instance.speed;
 
