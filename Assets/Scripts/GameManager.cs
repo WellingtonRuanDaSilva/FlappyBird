@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameStatus status = GameStatus.Start;
+    public float speed;
     public Bird bird;
     public PipesManager pipesManager;
     public Image startImage;

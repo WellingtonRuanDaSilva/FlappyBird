@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pipe : MonoBehaviour
+public class Ground : MonoBehaviour
 {
-
     void Start()
     {
         
     }
-
     void Update()
     {
         switch (GameManager.instance.status)
@@ -21,17 +19,19 @@ public class Pipe : MonoBehaviour
                 break;
             case GameStatus.GameOver:
                 break;
+            default:
+                break;
         }
+
     }
-    
-    void PlayUpdate()
+
+    private void PlayUpdate()
     {
         transform.position += Vector3.left * Time.deltaTime * GameManager.instance.speed;
 
-        if (transform.position.x < -2)
+        if (transform.position.x < -0.04f)
         {
-            // autodestruir
-            Destroy(gameObject);
+            transform.position += Vector3.right * 0.24f;
         }
     }
 }
