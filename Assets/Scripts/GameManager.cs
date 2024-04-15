@@ -110,6 +110,6 @@ public class GameManager : MonoBehaviour
 
     private void UpdateScoreText()
     {
-        scoreText.text = "Socre: " + score.ToString();
+        scoreText.text = "Score: " + score.ToString();
     }
 }
