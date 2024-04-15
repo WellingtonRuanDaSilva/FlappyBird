@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public Image gameOverImage;
     public TMP_Text scoreText;
     int score = 0;
+    private float gameOverTimer = 0f;
 
     private void Awake()
     {
@@ -78,9 +79,13 @@ public class GameManager : MonoBehaviour
 
     void GameOverUpdate()
     {
+        gameOverTimer += Time.deltaTime;
         if(Input.GetMouseButtonDown(0))
         {
-            Restart();    
+            if(gameOverTimer > 1)
+            {
+                Restart();
+            }
         }
     }
 
@@ -92,6 +97,7 @@ public class GameManager : MonoBehaviour
         startImage.enabled = true;
         gameOverImage.enabled = false;
         score = 0;
+        gameOverTimer = 0f;
         UpdateScoreText();
     }
 
