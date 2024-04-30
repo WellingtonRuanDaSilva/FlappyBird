@@ -10,6 +10,7 @@ public class Bird : MonoBehaviour
     public float jumpForce;
     private Vector3 startPosition;
     public Animator controller;
+    public AudioSource flappy;
 
     // Start is called before the first frame update
     void Start()
@@ -63,6 +64,7 @@ public class Bird : MonoBehaviour
     void Jump()
     {
         rig.velocity = Vector3.up * jumpForce;
+        flappy.Play();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

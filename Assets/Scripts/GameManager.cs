@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,8 +22,9 @@ public class GameManager : MonoBehaviour
     public Image gameOverImage;
     public TMP_Text scoreText;
     public TMP_Text bestScoreText;
+    public InterstitialAdExample interstitialAdExample;
 
-   
+
     int score = 0;
     
     private float gameOverTimer = 0f;
@@ -85,6 +87,7 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
+        interstitialAdExample.ShowAd();
         status = GameStatus.GameOver;
         gameOverImage.enabled = true;
         bestScoreText.enabled = true;
@@ -99,17 +102,14 @@ public class GameManager : MonoBehaviour
     void GameOverUpdate()
     {
         gameOverTimer += Time.deltaTime;
-        if(Input.GetMouseButtonDown(0))
-        {
-            if(gameOverTimer > 1)
-            {
-                Restart();
-            }
-        }
     }
 
-    void Restart()
+    public void Restart()
     {
+        if (gameOverTimer < 1)
+        {
+            return;
+        }
         status = GameStatus.Start;
         bird.Restart();
         pipesManager.Restart();
